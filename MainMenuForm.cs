@@ -19,6 +19,45 @@ namespace Kadeka
         {
             InitializeComponent();
             this.BackColor = bgcolor;
+            logOutButton.BackColor = fgcolor;
+            logOutButton.ForeColor = bgcolor;
+            showFilesButton.BackColor = fgcolor;
+            showFilesButton.ForeColor = bgcolor;
+            tableButton1.BackColor = midcolor;
+            dateTimeLabel.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void logOutButton_MouseEnter(object sender, EventArgs e)
+        {
+            logOutButton.BackColor = midcolor;
+        }
+
+        private void logOutButton_MouseLeave(object sender, EventArgs e)
+        {
+            logOutButton.BackColor = fgcolor;
+        }
+
+        private void logOutButton_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+            this.Close();
+        }
+
+        private void showFilesButton_MouseEnter(object sender, EventArgs e)
+        {
+            showFilesButton.BackColor = midcolor;
+        }
+
+        private void showFilesButton_MouseLeave(object sender, EventArgs e)
+        {
+            showFilesButton.BackColor = fgcolor;
+        }
+
+        private void showFilesButton_Click(object sender, EventArgs e)
+        {
+            PasswordForm passwordForm = new PasswordForm();
+            passwordForm.Show();
         }
     }
 }

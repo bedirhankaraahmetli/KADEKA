@@ -35,7 +35,10 @@
             passwordTextBox = new TextBox();
             pictureBox1 = new PictureBox();
             exitButton = new Button();
+            usernamePanel = new Panel();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            usernamePanel.SuspendLayout();
             SuspendLayout();
             // 
             // loginButton
@@ -45,6 +48,7 @@
             loginButton.BackgroundImageLayout = ImageLayout.None;
             loginButton.FlatAppearance.BorderColor = Color.FromArgb(255, 192, 192);
             loginButton.FlatAppearance.BorderSize = 0;
+            loginButton.FlatStyle = FlatStyle.Popup;
             loginButton.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
             loginButton.Location = new Point(547, 324);
             loginButton.Name = "loginButton";
@@ -74,22 +78,22 @@
             userNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             userNameLabel.AutoSize = true;
             userNameLabel.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-            userNameLabel.Location = new Point(364, 167);
+            userNameLabel.Location = new Point(3, 16);
             userNameLabel.Name = "userNameLabel";
-            userNameLabel.Size = new Size(139, 31);
+            userNameLabel.Size = new Size(154, 31);
             userNameLabel.TabIndex = 2;
-            userNameLabel.Text = "Username";
+            userNameLabel.Text = "Username :";
             // 
             // passWordLabel
             // 
             passWordLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             passWordLabel.AutoSize = true;
             passWordLabel.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-            passWordLabel.Location = new Point(369, 244);
+            passWordLabel.Location = new Point(374, 241);
             passWordLabel.Name = "passWordLabel";
-            passWordLabel.Size = new Size(134, 31);
+            passWordLabel.Size = new Size(149, 31);
             passWordLabel.TabIndex = 3;
-            passWordLabel.Text = "Password";
+            passWordLabel.Text = "Password :";
             // 
             // passwordTextBox
             // 
@@ -119,6 +123,7 @@
             // exitButton
             // 
             exitButton.BackColor = Color.LightCoral;
+            exitButton.FlatStyle = FlatStyle.Popup;
             exitButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             exitButton.Location = new Point(793, 489);
             exitButton.Name = "exitButton";
@@ -128,20 +133,41 @@
             exitButton.UseVisualStyleBackColor = false;
             exitButton.Click += exitButton_Click;
             // 
+            // usernamePanel
+            // 
+            usernamePanel.BackColor = Color.Transparent;
+            usernamePanel.BorderStyle = BorderStyle.Fixed3D;
+            usernamePanel.Controls.Add(userNameLabel);
+            usernamePanel.Location = new Point(364, 149);
+            usernamePanel.Name = "usernamePanel";
+            usernamePanel.Size = new Size(512, 67);
+            usernamePanel.TabIndex = 7;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Transparent;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Location = new Point(364, 222);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(512, 67);
+            panel1.TabIndex = 8;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            BackgroundImageLayout = ImageLayout.None;
+            BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(888, 539);
+            Controls.Add(passWordLabel);
             Controls.Add(exitButton);
             Controls.Add(passwordTextBox);
-            Controls.Add(passWordLabel);
-            Controls.Add(userNameLabel);
             Controls.Add(userNameTextBox);
             Controls.Add(loginButton);
+            Controls.Add(usernamePanel);
+            Controls.Add(panel1);
             Controls.Add(pictureBox1);
+            DoubleBuffered = true;
             Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(5, 6, 5, 6);
@@ -151,6 +177,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Kadeka";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            usernamePanel.ResumeLayout(false);
+            usernamePanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -164,5 +192,7 @@
         private TextBox passwordTextBox;
         private PictureBox pictureBox1;
         private Button exitButton;
+        private Panel usernamePanel;
+        private Panel panel1;
     }
 }

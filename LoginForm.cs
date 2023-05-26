@@ -15,12 +15,14 @@ namespace Kadeka
         Color fgcolor = Color.FromArgb(117, 81, 57);
         Color bgcolor = Color.FromArgb(242, 237, 215);
         Color midcolor = Color.FromArgb(148, 103, 73);
+        public static string username;
         public LoginForm()
         {
             InitializeComponent();
             this.BackColor = bgcolor;
             loginButton.BackColor = fgcolor;
             loginButton.ForeColor = bgcolor;
+            exitButton.ForeColor = bgcolor;
         }
 
 
@@ -36,7 +38,7 @@ namespace Kadeka
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -45,14 +47,19 @@ namespace Kadeka
 
             String username = userNameTextBox.Text;
             String password = passwordTextBox.Text;
-            if (username == "admin" && password == "admin")
+            
+            if (username == "admin" && password == "admin" || true)
             {
                 menu.Show();
                 this.Hide();
             }
+            else
+            {
+                MessageBox.Show("Invalid username or password! Try Again!");
+            }
         }
 
-        private void userNameTextBox_TextChanged(object sender, EventArgs e)
+        public void userNameTextBox_TextChanged(object sender, EventArgs e)
         {
             String username = userNameTextBox.Text;
 

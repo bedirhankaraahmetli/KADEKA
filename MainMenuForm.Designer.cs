@@ -28,56 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            panel3 = new Panel();
-            panel2 = new Panel();
+            tablePanel = new Panel();
+            tableButton1 = new Button();
+            infoPanel = new Panel();
+            nameLabel = new Label();
+            showFilesButton = new Button();
+            shiftTimeLabel = new Label();
+            logOutButton = new Button();
+            dateTimeLabel = new Label();
             pictureBox1 = new PictureBox();
-            dateTimePicker1 = new DateTimePicker();
-            panel3.SuspendLayout();
+            paymentPanel = new Panel();
+            tablePanel.SuspendLayout();
+            infoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // panel1
+            // tablePanel
             // 
-            panel1.BackgroundImageLayout = ImageLayout.Zoom;
-            panel1.Location = new Point(215, 111);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1143, 629);
-            panel1.TabIndex = 0;
+            tablePanel.BackgroundImageLayout = ImageLayout.None;
+            tablePanel.BorderStyle = BorderStyle.Fixed3D;
+            tablePanel.Controls.Add(tableButton1);
+            tablePanel.Location = new Point(215, 111);
+            tablePanel.Name = "tablePanel";
+            tablePanel.Size = new Size(1143, 629);
+            tablePanel.TabIndex = 0;
             // 
-            // panel3
+            // tableButton1
             // 
-            panel3.Controls.Add(dateTimePicker1);
-            panel3.Controls.Add(pictureBox1);
-            panel3.Location = new Point(12, 12);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1346, 93);
-            panel3.TabIndex = 0;
+            tableButton1.BackColor = Color.Transparent;
+            tableButton1.BackgroundImage = Properties.Resources.table_icon;
+            tableButton1.BackgroundImageLayout = ImageLayout.Zoom;
+            tableButton1.FlatStyle = FlatStyle.Popup;
+            tableButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            tableButton1.Location = new Point(29, 22);
+            tableButton1.Name = "tableButton1";
+            tableButton1.Size = new Size(154, 110);
+            tableButton1.TabIndex = 0;
+            tableButton1.Text = "T-1";
+            tableButton1.UseVisualStyleBackColor = false;
             // 
-            // panel2
+            // infoPanel
             // 
-            panel2.Location = new Point(12, 111);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(197, 378);
-            panel2.TabIndex = 1;
+            infoPanel.BorderStyle = BorderStyle.Fixed3D;
+            infoPanel.Controls.Add(nameLabel);
+            infoPanel.Controls.Add(showFilesButton);
+            infoPanel.Controls.Add(shiftTimeLabel);
+            infoPanel.Controls.Add(logOutButton);
+            infoPanel.Controls.Add(dateTimeLabel);
+            infoPanel.Controls.Add(pictureBox1);
+            infoPanel.Location = new Point(12, 12);
+            infoPanel.Name = "infoPanel";
+            infoPanel.Size = new Size(1346, 93);
+            infoPanel.TabIndex = 0;
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.BackColor = Color.Transparent;
+            nameLabel.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+            nameLabel.Location = new Point(439, 26);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new Size(217, 37);
+            nameLabel.TabIndex = 5;
+            nameLabel.Text = "Name - Surname";
+            // 
+            // showFilesButton
+            // 
+            showFilesButton.FlatStyle = FlatStyle.Popup;
+            showFilesButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            showFilesButton.Location = new Point(923, 18);
+            showFilesButton.Name = "showFilesButton";
+            showFilesButton.Size = new Size(148, 55);
+            showFilesButton.TabIndex = 4;
+            showFilesButton.Text = "Show Files";
+            showFilesButton.UseVisualStyleBackColor = true;
+            showFilesButton.Click += showFilesButton_Click;
+            showFilesButton.MouseEnter += showFilesButton_MouseEnter;
+            showFilesButton.MouseLeave += showFilesButton_MouseLeave;
+            // 
+            // shiftTimeLabel
+            // 
+            shiftTimeLabel.AutoSize = true;
+            shiftTimeLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            shiftTimeLabel.Location = new Point(1105, 32);
+            shiftTimeLabel.Name = "shiftTimeLabel";
+            shiftTimeLabel.Size = new Size(106, 30);
+            shiftTimeLabel.TabIndex = 3;
+            shiftTimeLabel.Text = "Shift Time";
+            // 
+            // logOutButton
+            // 
+            logOutButton.FlatStyle = FlatStyle.Popup;
+            logOutButton.Location = new Point(1255, 18);
+            logOutButton.Name = "logOutButton";
+            logOutButton.Size = new Size(77, 55);
+            logOutButton.TabIndex = 2;
+            logOutButton.Text = "LOG OUT";
+            logOutButton.UseVisualStyleBackColor = true;
+            logOutButton.Click += logOutButton_Click;
+            logOutButton.MouseEnter += logOutButton_MouseEnter;
+            logOutButton.MouseLeave += logOutButton_MouseLeave;
+            // 
+            // dateTimeLabel
+            // 
+            dateTimeLabel.AutoSize = true;
+            dateTimeLabel.BackColor = Color.Transparent;
+            dateTimeLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimeLabel.Location = new Point(126, 32);
+            dateTimeLabel.Name = "dateTimeLabel";
+            dateTimeLabel.Size = new Size(57, 30);
+            dateTimeLabel.TabIndex = 1;
+            dateTimeLabel.Text = "Date";
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = Properties.Resources.kadeka_logo_transparent;
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Location = new Point(-2, -1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(143, 87);
+            pictureBox1.Size = new Size(112, 92);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // dateTimePicker1
+            // paymentPanel
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Location = new Point(152, 29);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(232, 33);
-            dateTimePicker1.TabIndex = 1;
+            paymentPanel.BorderStyle = BorderStyle.Fixed3D;
+            paymentPanel.Location = new Point(12, 111);
+            paymentPanel.Name = "paymentPanel";
+            paymentPanel.Size = new Size(197, 378);
+            paymentPanel.TabIndex = 1;
             // 
             // MainMenuForm
             // 
@@ -85,26 +164,33 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1370, 752);
-            Controls.Add(panel2);
-            Controls.Add(panel3);
-            Controls.Add(panel1);
+            Controls.Add(paymentPanel);
+            Controls.Add(infoPanel);
+            Controls.Add(tablePanel);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenuForm";
-            panel3.ResumeLayout(false);
+            tablePanel.ResumeLayout(false);
+            infoPanel.ResumeLayout(false);
+            infoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
-        private Panel panel3;
-        private Panel panel2;
+        private Panel tablePanel;
+        private Panel infoPanel;
+        private Panel paymentPanel;
         private PictureBox pictureBox1;
-        private DateTimePicker dateTimePicker1;
+        private Label dateTimeLabel;
+        private Button logOutButton;
+        private Label shiftTimeLabel;
+        private Button showFilesButton;
+        private Label nameLabel;
+        private Button tableButton1;
     }
 }
