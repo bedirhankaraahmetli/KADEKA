@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             tablePanel = new Panel();
-            vScrollBar1 = new VScrollBar();
-            tableButton1 = new Button();
+            menuPanel = new Panel();
+            goBackButton = new Button();
             infoPanel = new Panel();
             nameLabel = new Label();
             showReportsButton = new Button();
@@ -40,6 +40,7 @@
             pictureBox1 = new PictureBox();
             paymentPanel = new Panel();
             tablePanel.SuspendLayout();
+            menuPanel.SuspendLayout();
             infoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -48,33 +49,31 @@
             // 
             tablePanel.BackgroundImageLayout = ImageLayout.None;
             tablePanel.BorderStyle = BorderStyle.Fixed3D;
-            tablePanel.Controls.Add(vScrollBar1);
-            tablePanel.Controls.Add(tableButton1);
+            tablePanel.Controls.Add(menuPanel);
             tablePanel.Location = new Point(215, 111);
             tablePanel.Name = "tablePanel";
-            tablePanel.Size = new Size(1143, 629);
+            tablePanel.Size = new Size(1150, 620);
             tablePanel.TabIndex = 0;
             // 
-            // vScrollBar1
+            // menuPanel
             // 
-            vScrollBar1.Location = new Point(1120, 0);
-            vScrollBar1.Name = "vScrollBar1";
-            vScrollBar1.Size = new Size(19, 625);
-            vScrollBar1.TabIndex = 2;
+            menuPanel.BorderStyle = BorderStyle.Fixed3D;
+            menuPanel.Controls.Add(goBackButton);
+            menuPanel.Location = new Point(-2, -2);
+            menuPanel.Name = "menuPanel";
+            menuPanel.Size = new Size(1150, 620);
+            menuPanel.TabIndex = 0;
             // 
-            // tableButton1
+            // goBackButton
             // 
-            tableButton1.BackColor = Color.Transparent;
-            tableButton1.BackgroundImage = Properties.Resources.table_icon;
-            tableButton1.BackgroundImageLayout = ImageLayout.Zoom;
-            tableButton1.FlatStyle = FlatStyle.Popup;
-            tableButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            tableButton1.Location = new Point(29, 22);
-            tableButton1.Name = "tableButton1";
-            tableButton1.Size = new Size(154, 110);
-            tableButton1.TabIndex = 0;
-            tableButton1.Text = "T-1";
-            tableButton1.UseVisualStyleBackColor = false;
+            goBackButton.BackColor = SystemColors.ActiveCaption;
+            goBackButton.Location = new Point(993, 15);
+            goBackButton.Name = "goBackButton";
+            goBackButton.Size = new Size(135, 51);
+            goBackButton.TabIndex = 0;
+            goBackButton.Text = "BACK";
+            goBackButton.UseVisualStyleBackColor = false;
+            goBackButton.Click += goBackButton_Click;
             // 
             // infoPanel
             // 
@@ -87,7 +86,7 @@
             infoPanel.Controls.Add(pictureBox1);
             infoPanel.Location = new Point(12, 12);
             infoPanel.Name = "infoPanel";
-            infoPanel.Size = new Size(1346, 93);
+            infoPanel.Size = new Size(1353, 93);
             infoPanel.TabIndex = 0;
             // 
             // nameLabel
@@ -172,7 +171,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(1370, 752);
+            ClientSize = new Size(1370, 735);
             Controls.Add(paymentPanel);
             Controls.Add(infoPanel);
             Controls.Add(tablePanel);
@@ -184,6 +183,7 @@
             Text = "MainMenuForm";
             Load += MainMenuForm_Load;
             tablePanel.ResumeLayout(false);
+            menuPanel.ResumeLayout(false);
             infoPanel.ResumeLayout(false);
             infoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -201,7 +201,7 @@
         private Label shiftTimeLabel;
         private Button showReportsButton;
         private Label nameLabel;
-        private Button tableButton1;
-        private VScrollBar vScrollBar1;
+        private Panel menuPanel;
+        private Button goBackButton;
     }
 }

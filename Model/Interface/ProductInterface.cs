@@ -10,8 +10,7 @@ namespace Kadeka.Model
     {
         static int id { get; set; }
         string name { get; set; }
-        int price { get; set; }
-        string description { get; set; }
+        float price { get; set; }
         string mainType { get; set; }
         string subType { get; set; }
     }

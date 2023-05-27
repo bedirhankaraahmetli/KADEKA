@@ -17,8 +17,8 @@ namespace Kadeka
         Color fgcolor = Color.FromArgb(117, 81, 57);
         Color bgcolor = Color.FromArgb(242, 237, 215);
         Color midcolor = Color.FromArgb(148, 103, 73);
-        List<Waiter> waiters = EmployeeManagment.retrieveWaiters("C:\\Users\\bedoo\\Desktop\\bigassproject\\Kadeka\\DB\\waiterInfo.txt");
-        List<Waiter> managers = EmployeeManagment.retrieveWaiters("C:\\Users\\bedoo\\Desktop\\bigassproject\\Kadeka\\DB\\managerInfo.txt");
+        List<Waiter> waiters = EmployeeManagment.retrieveWaiters("waiterInfo.txt");
+        List<Manager> managers = EmployeeManagment.retrieveManagers("managerInfo.txt");
         public static string username;
         public LoginForm()
         {
@@ -48,7 +48,6 @@ namespace Kadeka
         private void loginButton_Click(object sender, EventArgs e)
         {
             MainMenuForm menu = new MainMenuForm();
-
             String username = userNameTextBox.Text;
             String password = passwordTextBox.Text;
 
@@ -64,7 +63,7 @@ namespace Kadeka
             }
             for (int q = 0; q < managers.Count; q++)
             {
-                if (username == managers[q].Username && password == managers[q].Password)
+                if (username == managers[q].UserName && password == managers[q].Password)
                 {
                     userFound = true;
                     menu.Show();
