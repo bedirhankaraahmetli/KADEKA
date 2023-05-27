@@ -8,7 +8,7 @@ namespace Kadeka.Model
 {
     internal interface EmployeeInterface
     {
-        static int id { get; set; }
+        static int Id { get; set; }
         string Name { get; set; }
         string LastName { get; set; }
         string Password { get; set; }

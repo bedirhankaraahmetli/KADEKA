@@ -103,7 +103,6 @@
             passwordTextBox.Location = new Point(547, 241);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.PlaceholderText = "Enter Password";
-            passwordTextBox.ShortcutsEnabled = false;
             passwordTextBox.Size = new Size(311, 38);
             passwordTextBox.TabIndex = 2;
             passwordTextBox.UseSystemPasswordChar = true;

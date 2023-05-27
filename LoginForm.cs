@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Kadeka.Controller;
+using Kadeka.Model.Class;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,8 @@ namespace Kadeka
         Color fgcolor = Color.FromArgb(117, 81, 57);
         Color bgcolor = Color.FromArgb(242, 237, 215);
         Color midcolor = Color.FromArgb(148, 103, 73);
+        List<Waiter> waiters = EmployeeManagment.retrieveWaiters("C:\\Users\\bedoo\\Desktop\\bigassproject\\Kadeka\\DB\\waiterInfo.txt");
+        List<Waiter> managers = EmployeeManagment.retrieveWaiters("C:\\Users\\bedoo\\Desktop\\bigassproject\\Kadeka\\DB\\managerInfo.txt");
         public static string username;
         public LoginForm()
         {
@@ -47,13 +51,28 @@ namespace Kadeka
 
             String username = userNameTextBox.Text;
             String password = passwordTextBox.Text;
-            
-            if (username == "admin" && password == "admin" || true)
+
+            bool userFound = false;
+            for (int q = 0; q < waiters.Count; q++)
             {
-                menu.Show();
-                this.Hide();
+                if (username == waiters[q].Username && password == waiters[q].Password || true)
+                {
+                    userFound = true;
+                    menu.Show();
+                    this.Hide();
+                }
             }
-            else
+            for (int q = 0; q < managers.Count; q++)
+            {
+                if (username == managers[q].Username && password == managers[q].Password)
+                {
+                    userFound = true;
+                    menu.Show();
+                    this.Hide();
+                }
+            }
+
+            if (!userFound)
             {
                 MessageBox.Show("Invalid username or password! Try Again!");
             }

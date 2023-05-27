@@ -10,12 +10,15 @@ namespace Kadeka.Model.Class
     {
         public Manager(string name, string lastName, string password)
         {
+            Id++;
             Name = name;
             LastName = lastName;
+            UserName = (name + lastName).ToLower();
             Password = password;
         }
-        public int id { get; set; } = 0;
+        public int Id { get; set; } = 1100;
         public string Name { get; set; }
+        public string UserName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
     }

@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             tablePanel = new Panel();
+            vScrollBar1 = new VScrollBar();
             tableButton1 = new Button();
             infoPanel = new Panel();
             nameLabel = new Label();
-            showFilesButton = new Button();
+            showReportsButton = new Button();
             shiftTimeLabel = new Label();
             logOutButton = new Button();
             dateTimeLabel = new Label();
@@ -47,11 +48,19 @@
             // 
             tablePanel.BackgroundImageLayout = ImageLayout.None;
             tablePanel.BorderStyle = BorderStyle.Fixed3D;
+            tablePanel.Controls.Add(vScrollBar1);
             tablePanel.Controls.Add(tableButton1);
             tablePanel.Location = new Point(215, 111);
             tablePanel.Name = "tablePanel";
             tablePanel.Size = new Size(1143, 629);
             tablePanel.TabIndex = 0;
+            // 
+            // vScrollBar1
+            // 
+            vScrollBar1.Location = new Point(1120, 0);
+            vScrollBar1.Name = "vScrollBar1";
+            vScrollBar1.Size = new Size(19, 625);
+            vScrollBar1.TabIndex = 2;
             // 
             // tableButton1
             // 
@@ -71,7 +80,7 @@
             // 
             infoPanel.BorderStyle = BorderStyle.Fixed3D;
             infoPanel.Controls.Add(nameLabel);
-            infoPanel.Controls.Add(showFilesButton);
+            infoPanel.Controls.Add(showReportsButton);
             infoPanel.Controls.Add(shiftTimeLabel);
             infoPanel.Controls.Add(logOutButton);
             infoPanel.Controls.Add(dateTimeLabel);
@@ -92,19 +101,19 @@
             nameLabel.TabIndex = 5;
             nameLabel.Text = "Name - Surname";
             // 
-            // showFilesButton
+            // showReportsButton
             // 
-            showFilesButton.FlatStyle = FlatStyle.Popup;
-            showFilesButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            showFilesButton.Location = new Point(923, 18);
-            showFilesButton.Name = "showFilesButton";
-            showFilesButton.Size = new Size(148, 55);
-            showFilesButton.TabIndex = 4;
-            showFilesButton.Text = "Show Files";
-            showFilesButton.UseVisualStyleBackColor = true;
-            showFilesButton.Click += showFilesButton_Click;
-            showFilesButton.MouseEnter += showFilesButton_MouseEnter;
-            showFilesButton.MouseLeave += showFilesButton_MouseLeave;
+            showReportsButton.FlatStyle = FlatStyle.Popup;
+            showReportsButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            showReportsButton.Location = new Point(923, 18);
+            showReportsButton.Name = "showReportsButton";
+            showReportsButton.Size = new Size(148, 55);
+            showReportsButton.TabIndex = 4;
+            showReportsButton.Text = "Show Reports";
+            showReportsButton.UseVisualStyleBackColor = true;
+            showReportsButton.Click += showReportsButton_MouseLeave;
+            showReportsButton.MouseEnter += showReportsButton_MouseEnter;
+            showReportsButton.MouseLeave += showReportsButton_MouseLeave;
             // 
             // shiftTimeLabel
             // 
@@ -173,6 +182,7 @@
             Name = "MainMenuForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenuForm";
+            Load += MainMenuForm_Load;
             tablePanel.ResumeLayout(false);
             infoPanel.ResumeLayout(false);
             infoPanel.PerformLayout();
@@ -189,8 +199,9 @@
         private Label dateTimeLabel;
         private Button logOutButton;
         private Label shiftTimeLabel;
-        private Button showFilesButton;
+        private Button showReportsButton;
         private Label nameLabel;
         private Button tableButton1;
+        private VScrollBar vScrollBar1;
     }
 }

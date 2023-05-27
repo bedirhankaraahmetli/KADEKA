@@ -1,0 +1,3 @@
+Bedo,Baba,admin
+Vedat,Baba,admin
+Tuğrul,Baba,admin

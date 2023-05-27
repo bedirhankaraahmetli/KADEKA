@@ -8,16 +8,18 @@ namespace Kadeka.Model.Class
 {
     internal class Waiter : EmployeeInterface
     {
-        public Waiter(int id, string name, string lastName, string password)
+        public Waiter(string name, string lastName, string password)
         {
-            id++;
+            Id++;
             Name = name;
             LastName = lastName;
+            Username = (name + lastName).ToLower();
             Password = password;
         }
-        public static int id { get; set; } = 0;
+        public static int Id { get; set; } = 1200;
         public string Name { get; set; }
         public string LastName { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public DateTime shiftStartTime { get; set; }
 
@@ -25,6 +27,5 @@ namespace Kadeka.Model.Class
         {
             shiftStartTime = DateTime.Now;
         }
-
     }
 }
