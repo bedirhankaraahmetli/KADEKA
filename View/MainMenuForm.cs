@@ -37,6 +37,7 @@ namespace Kadeka
             goBackButton.Visible = false;
             nameLabel.Text = "Bedo BABA";
             orderLabel.Text = "";
+            totalPriceLabel.Text = "";
         }
 
         private void logOutButton_MouseEnter(object sender, EventArgs e)
@@ -88,9 +89,7 @@ namespace Kadeka
                             b.Visible = false;
                         }
                         button.Visible = false;
-                        selected_tableID = table.getId();
-                        if (tables.ContainsKey(selected_tableID) && tables[selected_tableID].getOrder() != null)
-                            orderLabel.Text = tables[selected_tableID].getOrder().getTotalPrice().ToString();
+                        selected_tableID = table.getId();                   
                         if (table.getOrder() == null)
                             table.setOrder(new Order(orderID, 0, " "));
 
@@ -112,8 +111,7 @@ namespace Kadeka
         }
         public void showProducts(int selected_tableID)
         {
-
-
+            PrintOrder(tables[selected_tableID].getOrder());
             int x = 300;
             int y = 120;
             int m = -1;
@@ -144,7 +142,8 @@ namespace Kadeka
                         product.Add(productsDict[button.Text]);
                         float price = productsDict[button.Text].getPrice();
                         order.setTotalPrice(order.getTotalPrice() + price);
-                        PrintOrder(productsDict[button.Text]);
+                        orderLabel.Text += productsDict[button.Text].getName().ToString() + ": " + productsDict[button.Text].getPrice().ToString() + "\n";
+                        totalPriceLabel.Text = order.getTotalPrice().ToString();
                     };
 
                     x += 180;
@@ -153,9 +152,12 @@ namespace Kadeka
                 y += 120;
             }
         }
-        private void PrintOrder(Product product)
+        private void PrintOrder(Order order)
         {
-            orderLabel.Text += product.getName().ToString() + ": " + product.getPrice().ToString() + "\n";
+            foreach (Product product in order.getProductList())
+                orderLabel.Text += product.getName().ToString() + ": " + product.getPrice().ToString() + "\n";
+
+            totalPriceLabel.Text = order.getTotalPrice().ToString();
         }
         private void showReportsButton_MouseLeave(object sender, EventArgs e)
         {
@@ -173,6 +175,7 @@ namespace Kadeka
             {
                 b.Visible = true;
                 orderLabel.Text = "";
+                totalPriceLabel.Text = "";
             }
             foreach (Button b in productButtons)
             {
