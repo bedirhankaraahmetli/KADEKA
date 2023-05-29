@@ -35,6 +35,8 @@ namespace Kadeka
             showReportsButton.ForeColor = bgcolor;
             dateTimeLabel.Text = DateTime.Now.ToLongDateString();
             goBackButton.Visible = false;
+            paymentButton.Visible = false;
+            reserveButton.Visible = false;
             nameLabel.Text = "Bedo BABA";
             orderLabel.Text = "";
             totalPriceLabel.Text = "";
@@ -83,13 +85,15 @@ namespace Kadeka
                     tableButtons.Add(button);
                     button.Click += (s, e) =>
                     {
+                        paymentButton.Visible = true;
+                        reserveButton.Visible = true;
                         goBackButton.Visible = true;
                         foreach (Button b in tableButtons)
                         {
                             b.Visible = false;
                         }
                         button.Visible = false;
-                        selected_tableID = table.getId();                   
+                        selected_tableID = table.getId();
                         if (table.getOrder() == null)
                             table.setOrder(new Order(orderID, 0, " "));
 
@@ -182,6 +186,8 @@ namespace Kadeka
                 b.Visible = false;
             }
             goBackButton.Visible = false;
+            reserveButton.Visible = false;
+            paymentButton.Visible = false;
         }
 
         private void showReportsButton_Click(object sender, EventArgs e)

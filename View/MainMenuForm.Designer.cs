@@ -37,6 +37,8 @@
             goBackButton = new Button();
             orderLabel = new Label();
             totalPriceLabel = new Label();
+            paymentButton = new Button();
+            reserveButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -133,11 +135,31 @@
             // totalPriceLabel
             // 
             totalPriceLabel.AutoSize = true;
-            totalPriceLabel.Location = new Point(128, 634);
+            totalPriceLabel.Location = new Point(198, 528);
             totalPriceLabel.Name = "totalPriceLabel";
             totalPriceLabel.Size = new Size(38, 15);
             totalPriceLabel.TabIndex = 7;
             totalPriceLabel.Text = "label1";
+            // 
+            // paymentButton
+            // 
+            paymentButton.BackColor = SystemColors.ActiveCaption;
+            paymentButton.Location = new Point(44, 583);
+            paymentButton.Name = "paymentButton";
+            paymentButton.Size = new Size(192, 42);
+            paymentButton.TabIndex = 8;
+            paymentButton.Text = "Pay out";
+            paymentButton.UseVisualStyleBackColor = false;
+            // 
+            // reserveButton
+            // 
+            reserveButton.BackColor = SystemColors.ActiveCaption;
+            reserveButton.Location = new Point(83, 644);
+            reserveButton.Name = "reserveButton";
+            reserveButton.Size = new Size(112, 28);
+            reserveButton.TabIndex = 9;
+            reserveButton.Text = "Reserve";
+            reserveButton.UseVisualStyleBackColor = false;
             // 
             // MainMenuForm
             // 
@@ -145,6 +167,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1370, 735);
+            Controls.Add(reserveButton);
+            Controls.Add(paymentButton);
             Controls.Add(totalPriceLabel);
             Controls.Add(orderLabel);
             Controls.Add(dateTimeLabel);
@@ -177,5 +201,7 @@
         private Button goBackButton;
         private Label orderLabel;
         private Label totalPriceLabel;
+        private Button paymentButton;
+        private Button reserveButton;
     }
 }
