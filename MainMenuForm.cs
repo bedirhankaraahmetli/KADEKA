@@ -1,4 +1,5 @@
-﻿using Kadeka.Model.Class;
+﻿using Kadeka.Controller;
+using Kadeka.Model.Class;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kadeka
-{
+{   
     public partial class MainMenuForm : Form
     {
         Color bgcolor = Color.FromArgb(242, 237, 215);
@@ -25,7 +26,7 @@ namespace Kadeka
             logOutButton.ForeColor = bgcolor;
             showReportsButton.BackColor = fgcolor;
             showReportsButton.ForeColor = bgcolor;
-            tableButton1.BackColor = midcolor;
+            menuPanel.Visible = false;
             dateTimeLabel.Text = DateTime.Now.ToLongDateString();
         }
 
@@ -43,32 +44,43 @@ namespace Kadeka
         {
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
-            this.Close();
+            this.Visible = false;
         }
 
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            System.Drawing.Point point = tableButton1.Location;
-
-            for (int i = 0; i < 5; i++)
+            List<Product> products = MenuIteractions.loadProducts("products.txt");
+            Dictionary<String, Table> tables = new Dictionary<String, Table>();
+            int x = 20;
+            int y = 20;
+            int tableID = 2000;
+            for (int i = 0; i <= 3; i++)
             {
-                if (i % 6 == 0)
+                for (int j = 0; j <= 4; j++)
                 {
-                    i = 0;
+                    Button button = new Button();
+                    button.Text = (1 + i) + "-" + (j + 1);
+                    button.Font = new Font("Tahoma", 14, FontStyle.Bold);
+                    button.BackColor = Color.LimeGreen;
+                    button.ForeColor = Color.White;
+                    button.FlatStyle = FlatStyle.Popup;
+                    button.Size = new Size(150, 110);
+                    button.Location = new Point(x, y);
+                    Table table = new Table(++tableID);
+                    tables.Add(button.Text, table);
+                    tablePanel.Controls.Add(button);
+                    button.Click += (s, e) =>
+                    {
+                        MessageBox.Show(table.getId().ToString());
+                        menuPanel.Visible = true;
+                        menuPanel.BorderStyle = BorderStyle.Fixed3D;
+                    };
+                    
 
+                    x += 240;
                 }
-                Button button = new Button();
-                button.Text = "T-" + i.ToString();
-                button.Font = tableButton1.Font;
-
-                button.BackgroundImage = tableButton1.BackgroundImage;
-                button.BackgroundImageLayout = ImageLayout.Zoom;
-                button.Size = new Size(154, 110);
-                button.BackColor = midcolor;
-                button.ForeColor = Color.Black;
-                button.Location = new System.Drawing.Point(point.X + 100, point.Y + 100);
-                tablePanel.Controls.Add(button);
-
+                x = 20;
+                y += 156;
             }
         }
 
@@ -80,6 +92,12 @@ namespace Kadeka
         private void showReportsButton_MouseEnter(object sender, EventArgs e)
         {
             showReportsButton.BackColor = midcolor;
+        }
+
+        private void goBackButton_Click(object sender, EventArgs e)
+        {
+            menuPanel.Visible = false;
+            tablePanel.Visible = true;
         }
     }
 }
