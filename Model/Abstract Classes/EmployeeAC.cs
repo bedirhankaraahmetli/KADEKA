@@ -10,11 +10,11 @@ namespace Kadeka.Model
 {
     abstract class EmployeeAC
     {
-        private int Id;
-        private string Name;
-        private string LastName;
-        private string Username;
-        private string Password;
+        int Id;
+        string Name;
+        string LastName;
+        string Username;
+        string Password;
 
         public EmployeeAC(int ıd, string name, string lastName, string password)
         {
