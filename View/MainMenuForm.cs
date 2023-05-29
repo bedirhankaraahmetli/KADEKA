@@ -36,6 +36,7 @@ namespace Kadeka
             dateTimeLabel.Text = DateTime.Now.ToLongDateString();
             goBackButton.Visible = false;
             nameLabel.Text = "Bedo BABA";
+            orderLabel.Text = "";
         }
 
         private void logOutButton_MouseEnter(object sender, EventArgs e)
@@ -88,8 +89,11 @@ namespace Kadeka
                         }
                         button.Visible = false;
                         selected_tableID = table.getId();
-                        Order order = new Order(orderID, 0, " ");
-                        table.setOrder(order);
+                        if (tables.ContainsKey(selected_tableID) && tables[selected_tableID].getOrder() != null)                                        
+                            orderLabel.Text = tables[selected_tableID].getOrder().getTotalPrice().ToString();
+                        if(table.getOrder() == null)
+                            table.setOrder(new Order(orderID, 0, " "));
+                            
                         table.setState(Model.State.occupied);
                         button.BackColor = Color.OrangeRed;
                         showProducts(selected_tableID);
@@ -112,8 +116,7 @@ namespace Kadeka
 
             int x = 300;
             int y = 120;
-            int m = -1, total = 0;
-            float price = 0;
+            int m = -1;
             for (int i = 0; i <= 4; i++)
             {
                 for (int j = 0; j <= 5; j++)
@@ -129,7 +132,7 @@ namespace Kadeka
                     button.FlatStyle = FlatStyle.Popup;
                     button.Size = new Size(150, 110);
                     button.Location = new Point(x, y);
-                    if (!(productsDict.ContainsKey(button.Text)))
+                    if (!productsDict.ContainsKey(button.Text))
                         productsDict.Add(button.Text, products[m]);
                     productButtons.Add(button);
                     Controls.Add(button);
@@ -139,9 +142,9 @@ namespace Kadeka
                         Order order = tables[selected_tableID].getOrder();
                         List<Product> product = order.getProductList();
                         product.Add(productsDict[button.Text]);
-                        price += productsDict[button.Text].getPrice();
-                        order.setTotalPrice(price);
-                        orderLabel.Text = order.getTotalPrice().ToString();
+                        float price = productsDict[button.Text].getPrice();
+                        order.setTotalPrice(order.getTotalPrice() + price);
+                        PrintOrder(productsDict[button.Text]);
                     };
 
                     x += 180;
@@ -149,6 +152,10 @@ namespace Kadeka
                 x = 300;
                 y += 120;
             }
+        }
+        private void PrintOrder(Product product)
+        {        
+            orderLabel.Text += product.getName().ToString() + ": " + product.getPrice().ToString() + "\n";           
         }
         private void showReportsButton_MouseLeave(object sender, EventArgs e)
         {
@@ -165,6 +172,7 @@ namespace Kadeka
             foreach (Button b in tableButtons)
             {
                 b.Visible = true;
+                orderLabel.Text = "";
             }
             foreach (Button b in productButtons)
             {
