@@ -28,6 +28,9 @@ namespace Kadeka
             showReportsButton.ForeColor = bgcolor;
             menuPanel.Visible = false;
             dateTimeLabel.Text = DateTime.Now.ToLongDateString();
+            goBackButton.Width = 50;
+            goBackButton.Height = 50;
+            goBackButton.Location = new Point(1080, 20);
         }
 
         private void logOutButton_MouseEnter(object sender, EventArgs e)
@@ -90,9 +93,9 @@ namespace Kadeka
             Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
             x = y = 20;
             int m = -1, total = 0;
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 4; i++)
             {
-                for (int j = 0; j <= 4; j++)
+                for (int j = 0; j <= 5; j++)
                 {
                     m++;
                     if (m == products.Count)
@@ -111,10 +114,10 @@ namespace Kadeka
                     {
 
                     };
-                    x += 240;
+                    x += 180;
                 }
                 x = 20;
-                y += 156;
+                y += 120;
             }
 
 
