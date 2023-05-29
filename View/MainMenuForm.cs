@@ -18,6 +18,9 @@ namespace Kadeka
         Color bgcolor = Color.FromArgb(242, 237, 215);
         Color fgcolor = Color.FromArgb(117, 81, 57);
         Color midcolor = Color.FromArgb(148, 103, 73);
+        List<Button> tableButtons = new List<Button>();
+        List<Button> productButtons = new List<Button>();
+
         public MainMenuForm()
         {
             InitializeComponent();
@@ -26,11 +29,9 @@ namespace Kadeka
             logOutButton.ForeColor = bgcolor;
             showReportsButton.BackColor = fgcolor;
             showReportsButton.ForeColor = bgcolor;
-            menuPanel.Visible = false;
             dateTimeLabel.Text = DateTime.Now.ToLongDateString();
-            goBackButton.Width = 50;
-            goBackButton.Height = 50;
-            goBackButton.Location = new Point(1080, 20);
+            goBackButton.Visible = false;
+            nameLabel.Text = "Bedo BABA";
         }
 
         private void logOutButton_MouseEnter(object sender, EventArgs e)
@@ -52,9 +53,10 @@ namespace Kadeka
 
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
+            
             Dictionary<String, Table> tables = new Dictionary<String, Table>();
-            int x = 20;
-            int y = 20;
+            int x = 300;
+            int y = 120;
             int tableID = 2000, selected_tableID, orderID = 4000;
             for (int i = 0; i <= 3; i++)
             {
@@ -63,6 +65,7 @@ namespace Kadeka
                     Button button = new Button();
                     button.Text = (1 + i) + "-" + (j + 1);
                     button.Font = new Font("Tahoma", 14, FontStyle.Bold);
+
                     button.BackColor = Color.LimeGreen;
                     button.ForeColor = Color.White;
                     button.FlatStyle = FlatStyle.Popup;
@@ -70,11 +73,18 @@ namespace Kadeka
                     button.Location = new Point(x, y);
                     Table table = new Table(++tableID);
                     tables.Add(button.Text, table);
-                    tablePanel.Controls.Add(button);
+                    button.Width = 150;
+                    button.Height = 100;
+                    Controls.Add(button);
+                    tableButtons.Add(button);
                     button.Click += (s, e) =>
                     {
-                        menuPanel.Visible = true;
-                        menuPanel.BorderStyle = BorderStyle.Fixed3D;
+                        goBackButton.Visible = true;
+                        foreach(Button b in tableButtons)
+                        {
+                            b.Visible = false;
+                        }
+                        button.Visible = false;
                         selected_tableID = table.getId();
                         Order order = new Order(orderID, 0, " ");
                         table.setOrder(order);
@@ -83,14 +93,15 @@ namespace Kadeka
                     };
 
 
-                    x += 240;
+                    x += 200;
                 }
-                x = 20;
+                x = 300;
                 y += 156;
             }
 
             List<Product> products = MenuInteractions.loadProducts("products.txt");
             Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
+            
             x = y = 20;
             int m = -1, total = 0;
             for (int i = 0; i <= 4; i++)
@@ -109,7 +120,7 @@ namespace Kadeka
                     button.Size = new Size(150, 110);
                     button.Location = new Point(x, y);
                     productsDict.Add(products[m].getID().ToString(), products[m]);
-                    menuPanel.Controls.Add(button);
+                    productButtons.Add(button);
                     button.Click += (s, e) =>
                     {
 
@@ -135,8 +146,11 @@ namespace Kadeka
 
         private void goBackButton_Click(object sender, EventArgs e)
         {
-            menuPanel.Visible = false;
-            tablePanel.Visible = true;
+            foreach (Button b in tableButtons) 
+            {
+                b.Visible = true;
+            }
+            goBackButton.Visible = false;
         }
 
         private void showReportsButton_Click(object sender, EventArgs e)
