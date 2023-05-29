@@ -97,12 +97,11 @@ namespace Kadeka
                         if (table.getOrder() == null)
                             table.setOrder(new Order(orderID, 0, " "));
 
-                        table.setState(Model.State.occupied);
-                        button.BackColor = Color.OrangeRed;
+                        
                         showProducts(selected_tableID);
                     };
 
-
+                   
                     x += 200;
                 }
                 x = 300;
@@ -147,7 +146,7 @@ namespace Kadeka
                         float price = productsDict[button.Text].getPrice();
                         order.setTotalPrice(order.getTotalPrice() + price);
                         orderLabel.Text += productsDict[button.Text].getName().ToString() + ": " + productsDict[button.Text].getPrice().ToString() + "\n";
-                        totalPriceLabel.Text = order.getTotalPrice().ToString();
+                        totalPriceLabel.Text = order.getTotalPrice().ToString();                      
                     };
 
                     x += 180;
@@ -175,6 +174,14 @@ namespace Kadeka
 
         private void goBackButton_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < tableButtons.Count; i++)
+            {
+                if (tables[2001 + i].getOrder() != null && tables[2001 + i].getOrder().getProductList().Count > 0)
+                {
+                    tables[2001+i].setState(Model.State.occupied);
+                    tableButtons[i].BackColor = Color.OrangeRed;
+                }
+            }
             foreach (Button b in tableButtons)
             {
                 b.Visible = true;
@@ -199,5 +206,7 @@ namespace Kadeka
         {
             orderLabel.Update();
         }
+
+    
     }
 }
