@@ -6,20 +6,10 @@ using System.Threading.Tasks;
 
 namespace Kadeka.Model.Class
 {
-    internal class Manager : EmployeeInterface
+    internal class Manager : EmployeeAC
     {
-        public Manager(string name, string lastName, string password)
+        public Manager(int ıd, string name, string lastName, string password) : base(ıd, name, lastName, password)
         {
-            Id++;
-            Name = name;
-            LastName = lastName;
-            UserName = (name + lastName).ToLower();
-            Password = password;
         }
-        public int Id { get; set; } = 1100;
-        public string Name { get; set; }
-        public string UserName { get; set; }
-        public string LastName { get; set; }
-        public string Password { get; set; }
     }
 }

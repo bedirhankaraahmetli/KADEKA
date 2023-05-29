@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kadeka.Model.Class
 {
-    internal class Product : ProductInterface
+    internal class Product : ProductAC
     {
         public Product(string name, float price, string mainType, string subType) 
         {

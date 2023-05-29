@@ -1,16 +1,16 @@
-Black Tea, 2.50, Tea, Hot
-Green Tea, 3.00, Tea, Hot
-Herbal Tea, 3.00, Tea, Hot
-Croissant, 2.50, Pastry, Sweet
-Muffin, 2.50, Pastry, Sweet
-Danish, 2.50, Pastry, Sweet
-Cinnamon Roll, 3.00, Pastry, Sweet
-Bagel with Cream Cheese, 2.50, Pastry, Savory
-Breakfast Sandwich, 4.50, Breakfast, Savory
-Breakfast Burrito, 5.00, Breakfast, Savory
-French Toast, 6.00, Breakfast, Sweet
-Pancakes, 5.50, Breakfast, Sweet
-Omelette, 6.50, Breakfast, Savory
-Bagel Sandwich, 4.50, Breakfast, Savory
-Bagel with Peanut Butter, 2.50, Pastry, Sweet
-Bagel with Jam, 2.50, Pastry, Sweet
+Black Tea,2.50,Tea,Hot
+Green Tea,3.00,Tea,Hot
+Herbal Tea,3.00,Tea,Hot
+Croissant,2.50,Pastry,Sweet
+Muffin,2.50,Pastry,Sweet
+Danish,2.50,Pastry,Sweet
+Cinnamon Roll,3.00,Pastry,Sweet
+Bagel with Cream Cheese,2.50,Pastry,Savory
+Breakfast Sandwich,4.50,Breakfast,Savory
+Breakfast Burrito,5.00,Breakfast,Savory
+French Toast,6.00,Breakfast,Sweet
+Pancakes,5.50,Breakfast,Sweet
+Omelette,6.50,Breakfast,Savory
+Bagel Sandwich,4.50,Breakfast,Savory
+Bagel with Peanut Butter,2.50,Pastry,Sweet
+Bagel with Jam,2.50,Pastry,Sweet

@@ -1,5 +1,6 @@
 ﻿using Kadeka.Controller;
 using Kadeka.Model.Class;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,10 @@ namespace Kadeka
         Color midcolor = Color.FromArgb(148, 103, 73);
         List<Waiter> waiters = EmployeeManagment.retrieveWaiters("waiterInfo.txt");
         List<Manager> managers = EmployeeManagment.retrieveManagers("managerInfo.txt");
-        public static string username;
+        String name, lastname;
+
+        public String getName() { return name; }
+        public String getLastname() { return lastname; }
         public LoginForm()
         {
             InitializeComponent();
@@ -54,20 +58,24 @@ namespace Kadeka
             bool userFound = false;
             for (int q = 0; q < waiters.Count; q++)
             {
-                if (username == waiters[q].Username && password == waiters[q].Password || true)
+                if (username == waiters[q].getUsername() && password == waiters[q].getPassword() || true)
                 {
                     userFound = true;
                     menu.Show();
-                    this.Hide();
+                    this.Visible = false;
+                    name = waiters[q].getName();
+                    lastname = waiters[q].getLastName();
                 }
             }
             for (int q = 0; q < managers.Count; q++)
             {
-                if (username == managers[q].UserName && password == managers[q].Password)
+                if (username == managers[q].getUsername() && password == managers[q].getPassword())
                 {
                     userFound = true;
                     menu.Show();
-                    this.Hide();
+                    this.Visible = false;
+                    name = waiters[q].getName();
+                    lastname = waiters[q].getLastName();
                 }
             }
 

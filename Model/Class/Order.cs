@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kadeka.Model.Class
 {
-    internal class Order : OrderInterface<Product>
+    internal class Order : OrderAC<Product>
     {
         public Order()
         {

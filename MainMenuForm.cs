@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kadeka
-{
+{   
     public partial class MainMenuForm : Form
     {
         Color bgcolor = Color.FromArgb(242, 237, 215);
@@ -44,7 +44,7 @@ namespace Kadeka
         {
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
-            this.Close();
+            this.Visible = false;
         }
 
         private void MainMenuForm_Load(object sender, EventArgs e)
@@ -53,6 +53,7 @@ namespace Kadeka
             Dictionary<String, Table> tables = new Dictionary<String, Table>();
             int x = 20;
             int y = 20;
+            int tableID = 2000;
             for (int i = 0; i <= 3; i++)
             {
                 for (int j = 0; j <= 4; j++)
@@ -65,15 +66,16 @@ namespace Kadeka
                     button.FlatStyle = FlatStyle.Popup;
                     button.Size = new Size(150, 110);
                     button.Location = new Point(x, y);
+                    Table table = new Table(++tableID);
+                    tables.Add(button.Text, table);
+                    tablePanel.Controls.Add(button);
                     button.Click += (s, e) =>
                     {
-                        //MessageBox.Show(products[0].name);
+                        MessageBox.Show(table.getId().ToString());
                         menuPanel.Visible = true;
-
                         menuPanel.BorderStyle = BorderStyle.Fixed3D;
                     };
-                    tables.Add(button.Text, new Table());
-                    tablePanel.Controls.Add(button);
+                    
 
                     x += 240;
                 }

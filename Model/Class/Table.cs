@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace Kadeka.Model.Class
 {
-    internal class Table : TableInterface
+    internal class Table : TableAC
     {
-        public Table() 
+        public Table(int id) 
         {
-            id++;
-            state = State.available;
-            order = new Order();
+            setId(id);
+            setState(State.available);
+            setOrder(new Order());
         }
-        public static int id { get; set; }
-        public State state { get; set; }
-        public Order order { get; set; }
+
 
     }
 }

@@ -6,21 +6,12 @@ using System.Threading.Tasks;
 
 namespace Kadeka.Model.Class
 {
-    internal class Waiter : EmployeeInterface
+    internal class Waiter : EmployeeAC
     {
-        public Waiter(string name, string lastName, string password)
+        public Waiter(int ıd, string name, string lastName, string password) : base(ıd, name, lastName,  password)
         {
-            Id++;
-            Name = name;
-            LastName = lastName;
-            Username = (name + lastName).ToLower();
-            Password = password;
         }
-        public static int Id { get; set; } = 1200;
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+
         public DateTime shiftStartTime { get; set; }
 
         void shiftStart()
