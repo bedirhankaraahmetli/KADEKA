@@ -52,7 +52,7 @@ namespace Kadeka
             Dictionary<String, Table> tables = new Dictionary<String, Table>();
             int x = 20;
             int y = 20;
-            int tableID = 2000;
+            int tableID = 2000, selected_tableID, orderID = 4000;
             for (int i = 0; i <= 3; i++)
             {
                 for (int j = 0; j <= 4; j++)
@@ -72,6 +72,11 @@ namespace Kadeka
                     {
                         menuPanel.Visible = true;
                         menuPanel.BorderStyle = BorderStyle.Fixed3D;
+                        selected_tableID = table.getId();
+                        Order order = new Order(orderID, 0, " ");
+                        table.setOrder(order);
+                        table.setState(Model.State.occupied);
+                        button.BackColor = Color.OrangeRed;
                     };
 
 
@@ -83,38 +88,35 @@ namespace Kadeka
 
             List<Product> products = MenuInteractions.loadProducts("products.txt");
             Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
-
-            int m = 0;
+            x = y = 20;
+            int m = -1, total = 0;
             for (int i = 0; i <= 3; i++)
             {
                 for (int j = 0; j <= 4; j++)
                 {
+                    m++;
+                    if (m == products.Count)
+                        break;
                     Button button = new Button();
-                    button.Text = "asd";
-                    button.Font = new Font("Tahoma", 14, FontStyle.Bold);
-                    button.BackColor = Color.LimeGreen;
-                    button.ForeColor = Color.White;
+                    button.Text = products[m].getName() + "\n" + products[m].getPrice() + "$\n" + products[m].getMainType() + " / " + products[m].getSubType();
+                    button.Font = new Font("Tahoma", 8, FontStyle.Bold);
+                    button.BackColor = midcolor;
+                    button.ForeColor = bgcolor;
                     button.FlatStyle = FlatStyle.Popup;
                     button.Size = new Size(150, 110);
                     button.Location = new Point(x, y);
-                    productsDict.Add(button.Text+m, products[m]);
+                    productsDict.Add(products[m].getID().ToString(), products[m]);
                     menuPanel.Controls.Add(button);
                     button.Click += (s, e) =>
                     {
-                        menuPanel.Visible = true;
-                        menuPanel.BorderStyle = BorderStyle.Fixed3D;
-                    };
-
-                    m++;
+                        
+                    };       
                     x += 240;
                 }
-                m++;
                 x = 20;
                 y += 156;
             }
-            
-            
-
+          
 
         }
 
@@ -132,6 +134,11 @@ namespace Kadeka
         {
             menuPanel.Visible = false;
             tablePanel.Visible = true;
+        }
+
+        private void showReportsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
