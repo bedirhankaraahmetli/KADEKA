@@ -89,11 +89,11 @@ namespace Kadeka
                         }
                         button.Visible = false;
                         selected_tableID = table.getId();
-                        if (tables.ContainsKey(selected_tableID) && tables[selected_tableID].getOrder() != null)                                        
+                        if (tables.ContainsKey(selected_tableID) && tables[selected_tableID].getOrder() != null)
                             orderLabel.Text = tables[selected_tableID].getOrder().getTotalPrice().ToString();
-                        if(table.getOrder() == null)
+                        if (table.getOrder() == null)
                             table.setOrder(new Order(orderID, 0, " "));
-                            
+
                         table.setState(Model.State.occupied);
                         button.BackColor = Color.OrangeRed;
                         showProducts(selected_tableID);
@@ -136,7 +136,7 @@ namespace Kadeka
                         productsDict.Add(button.Text, products[m]);
                     productButtons.Add(button);
                     Controls.Add(button);
-                    
+
                     button.Click += (s, e) =>
                     {
                         Order order = tables[selected_tableID].getOrder();
@@ -154,8 +154,8 @@ namespace Kadeka
             }
         }
         private void PrintOrder(Product product)
-        {        
-            orderLabel.Text += product.getName().ToString() + ": " + product.getPrice().ToString() + "\n";           
+        {
+            orderLabel.Text += product.getName().ToString() + ": " + product.getPrice().ToString() + "\n";
         }
         private void showReportsButton_MouseLeave(object sender, EventArgs e)
         {

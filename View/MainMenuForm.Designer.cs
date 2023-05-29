@@ -36,6 +36,7 @@
             nameLabel = new Label();
             goBackButton = new Button();
             orderLabel = new Label();
+            totalPriceLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -129,12 +130,22 @@
             orderLabel.Text = "label1";
             orderLabel.TextChanged += orderLabel_TextChanged;
             // 
+            // totalPriceLabel
+            // 
+            totalPriceLabel.AutoSize = true;
+            totalPriceLabel.Location = new Point(128, 634);
+            totalPriceLabel.Name = "totalPriceLabel";
+            totalPriceLabel.Size = new Size(38, 15);
+            totalPriceLabel.TabIndex = 7;
+            totalPriceLabel.Text = "label1";
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1370, 735);
+            Controls.Add(totalPriceLabel);
             Controls.Add(orderLabel);
             Controls.Add(dateTimeLabel);
             Controls.Add(goBackButton);
@@ -165,5 +176,6 @@
         private Label nameLabel;
         private Button goBackButton;
         private Label orderLabel;
+        private Label totalPriceLabel;
     }
 }
