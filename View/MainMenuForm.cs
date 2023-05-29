@@ -52,10 +52,10 @@ namespace Kadeka
 
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            Dictionary<String, Table> tables = new Dictionary<String, Table>();
+            Dictionary<int, Table> tables = new Dictionary<int, Table>();
             int x = 20;
             int y = 20;
-            int tableID = 2000, selected_tableID, orderID = 4000;
+            int tableID = 2000, selected_tableID = 0, orderID = 4000;
             for (int i = 0; i <= 3; i++)
             {
                 for (int j = 0; j <= 4; j++)
@@ -69,7 +69,7 @@ namespace Kadeka
                     button.Size = new Size(150, 110);
                     button.Location = new Point(x, y);
                     Table table = new Table(++tableID);
-                    tables.Add(button.Text, table);
+                    tables.Add(table.getId(), table);
                     tablePanel.Controls.Add(button);
                     button.Click += (s, e) =>
                     {
@@ -93,6 +93,7 @@ namespace Kadeka
             Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
             x = y = 20;
             int m = -1, total = 0;
+            string orderProducts = "";
             for (int i = 0; i <= 4; i++)
             {
                 for (int j = 0; j <= 5; j++)
@@ -108,10 +109,19 @@ namespace Kadeka
                     button.FlatStyle = FlatStyle.Popup;
                     button.Size = new Size(150, 110);
                     button.Location = new Point(x, y);
-                    productsDict.Add(products[m].getID().ToString(), products[m]);
+                    productsDict.Add(button.Text, products[m]);
                     menuPanel.Controls.Add(button);
                     button.Click += (s, e) =>
                     {
+                        List<Product> pList = tables[selected_tableID].getOrder().getProductList();
+                        pList.Add(productsDict[button.Text]);
+                        for (int p = 0; p < pList.Count; i++)
+                        {
+                            orderProducts += pList[p].getName() + "\n";
+
+                        };
+                        orderLabel.Text = orderProducts;
+                        paymentPanel.Controls.Add(orderLabel);
 
                     };
                     x += 180;

@@ -203,5 +203,6 @@
         private Label nameLabel;
         private Panel menuPanel;
         private Button goBackButton;
+        private Label orderLabel;
     }
 }
