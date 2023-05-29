@@ -8,12 +8,7 @@ namespace Kadeka.Model.Class
 {
     internal class Table : TableAC
     {
-        public Table(int id) 
-        {
-            setId(id);
-            setState(State.available);
-            setOrder(new Order());
-        }
+        public Table(int id) : base (id){ }
 
 
     }

@@ -9,11 +9,16 @@ namespace Kadeka.Model
 {
     abstract class TableAC
     {
-        private int id;
-        private State state;
-        private Order order;
-        public int getId() { return id; }
-        public void setId(int id) { this.id = id; }
+        int ID;
+        State state;
+        Order order;
+        public TableAC(int id)
+        {
+            ID = id;
+            state = State.available;
+        }
+        public int getId() { return ID; }
+        public void setId(int id) { this.ID = id; }
         public State getState() { return state; }
         public void setState(State state) { this.state = state; }
         public Order getOrder() { return order; }

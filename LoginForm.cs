@@ -20,7 +20,7 @@ namespace Kadeka
         Color midcolor = Color.FromArgb(148, 103, 73);
         List<Waiter> waiters = EmployeeManagment.retrieveWaiters("waiterInfo.txt");
         List<Manager> managers = EmployeeManagment.retrieveManagers("managerInfo.txt");
-        String name, lastname;
+        public String name, lastname;
 
         public String getName() { return name; }
         public String getLastname() { return lastname; }

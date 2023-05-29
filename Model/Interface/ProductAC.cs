@@ -8,10 +8,31 @@ namespace Kadeka.Model
 {
     abstract class ProductAC
     {
-        private static int id { get; set; }
-        private string name { get; set; }
-        private float price { get; set; }
-        private string mainType { get; set; }
-        private string subType { get; set; }
+        int ID;
+        string Name;
+        float Price;
+        string MainType;
+        string SubType;
+
+        public ProductAC(int id, string name, float price, string mainType, string subType)
+        {
+            ID = id;
+            Name = name;
+            Price = price;
+            MainType = mainType;
+            SubType = subType;
+        }
+
+        public int getID() { return ID; }
+        public string getName() { return Name; }
+        public float getPrice() { return Price; }
+        public string getMainType() { return MainType; }
+        public string getSubType() { return SubType; }
+        public void setID(int id) { ID = id; }
+        public void setName(string name) { Name = name; }
+        public void setPrice(float price) { Price = price; }
+        public void setMainType(string mainType) { MainType = mainType; }
+        public void setSubType(string subType) { SubType = subType; }
+
     }
 }

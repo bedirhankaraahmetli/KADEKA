@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kadeka
-{   
+{
     public partial class MainMenuForm : Form
     {
         Color bgcolor = Color.FromArgb(242, 237, 215);
@@ -49,7 +49,6 @@ namespace Kadeka
 
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            List<Product> products = MenuIteractions.loadProducts("products.txt");
             Dictionary<String, Table> tables = new Dictionary<String, Table>();
             int x = 20;
             int y = 20;
@@ -71,17 +70,52 @@ namespace Kadeka
                     tablePanel.Controls.Add(button);
                     button.Click += (s, e) =>
                     {
-                        MessageBox.Show(table.getId().ToString());
                         menuPanel.Visible = true;
                         menuPanel.BorderStyle = BorderStyle.Fixed3D;
                     };
-                    
+
 
                     x += 240;
                 }
                 x = 20;
                 y += 156;
             }
+
+            List<Product> products = MenuInteractions.loadProducts("products.txt");
+            Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
+
+            int m = 0;
+            for (int i = 0; i <= 3; i++)
+            {
+                for (int j = 0; j <= 4; j++)
+                {
+                    Button button = new Button();
+                    button.Text = "asd";
+                    button.Font = new Font("Tahoma", 14, FontStyle.Bold);
+                    button.BackColor = Color.LimeGreen;
+                    button.ForeColor = Color.White;
+                    button.FlatStyle = FlatStyle.Popup;
+                    button.Size = new Size(150, 110);
+                    button.Location = new Point(x, y);
+                    productsDict.Add(button.Text+m, products[m]);
+                    menuPanel.Controls.Add(button);
+                    button.Click += (s, e) =>
+                    {
+                        menuPanel.Visible = true;
+                        menuPanel.BorderStyle = BorderStyle.Fixed3D;
+                    };
+
+                    m++;
+                    x += 240;
+                }
+                m++;
+                x = 20;
+                y += 156;
+            }
+            
+            
+
+
         }
 
         private void showReportsButton_MouseLeave(object sender, EventArgs e)
