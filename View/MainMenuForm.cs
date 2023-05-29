@@ -1,4 +1,5 @@
 ﻿using Kadeka.Controller;
+using Kadeka.Model;
 using Kadeka.Model.Class;
 using System;
 using System.Collections;
@@ -20,6 +21,9 @@ namespace Kadeka
         Color midcolor = Color.FromArgb(148, 103, 73);
         List<Button> tableButtons = new List<Button>();
         List<Button> productButtons = new List<Button>();
+        Dictionary<int, Table> tables = new Dictionary<int, Table>();
+        List<Product> products = MenuInteractions.loadProducts("products.txt");
+        Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
 
         public MainMenuForm()
         {
@@ -53,8 +57,6 @@ namespace Kadeka
 
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            
-            Dictionary<String, Table> tables = new Dictionary<String, Table>();
             int x = 300;
             int y = 120;
             int tableID = 2000, selected_tableID, orderID = 4000;
@@ -72,7 +74,7 @@ namespace Kadeka
                     button.Size = new Size(150, 110);
                     button.Location = new Point(x, y);
                     Table table = new Table(++tableID);
-                    tables.Add(button.Text, table);
+                    tables.Add(table.getId(), table);
                     button.Width = 150;
                     button.Height = 100;
                     Controls.Add(button);
@@ -80,7 +82,7 @@ namespace Kadeka
                     button.Click += (s, e) =>
                     {
                         goBackButton.Visible = true;
-                        foreach(Button b in tableButtons)
+                        foreach (Button b in tableButtons)
                         {
                             b.Visible = false;
                         }
@@ -90,6 +92,7 @@ namespace Kadeka
                         table.setOrder(order);
                         table.setState(Model.State.occupied);
                         button.BackColor = Color.OrangeRed;
+                        showProducts(selected_tableID);
                     };
 
 
@@ -99,11 +102,18 @@ namespace Kadeka
                 y += 156;
             }
 
-            List<Product> products = MenuInteractions.loadProducts("products.txt");
-            Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
-            
-            x = y = 20;
+
+
+
+        }
+        public void showProducts(int selected_tableID)
+        {
+
+
+            int x = 300;
+            int y = 120;
             int m = -1, total = 0;
+            float price = 0;
             for (int i = 0; i <= 4; i++)
             {
                 for (int j = 0; j <= 5; j++)
@@ -119,21 +129,27 @@ namespace Kadeka
                     button.FlatStyle = FlatStyle.Popup;
                     button.Size = new Size(150, 110);
                     button.Location = new Point(x, y);
-                    productsDict.Add(products[m].getID().ToString(), products[m]);
+                    if (!(productsDict.ContainsKey(button.Text)))
+                        productsDict.Add(button.Text, products[m]);
                     productButtons.Add(button);
+                    Controls.Add(button);
+                    
                     button.Click += (s, e) =>
                     {
-
+                        Order order = tables[selected_tableID].getOrder();
+                        List<Product> product = order.getProductList();
+                        product.Add(productsDict[button.Text]);
+                        price += productsDict[button.Text].getPrice();
+                        order.setTotalPrice(price);
+                        orderLabel.Text = order.getTotalPrice().ToString();
                     };
+
                     x += 180;
                 }
-                x = 20;
+                x = 300;
                 y += 120;
             }
-
-
         }
-
         private void showReportsButton_MouseLeave(object sender, EventArgs e)
         {
             showReportsButton.BackColor = fgcolor;
@@ -146,9 +162,13 @@ namespace Kadeka
 
         private void goBackButton_Click(object sender, EventArgs e)
         {
-            foreach (Button b in tableButtons) 
+            foreach (Button b in tableButtons)
             {
                 b.Visible = true;
+            }
+            foreach (Button b in productButtons)
+            {
+                b.Visible = false;
             }
             goBackButton.Visible = false;
         }
@@ -156,6 +176,11 @@ namespace Kadeka
         private void showReportsButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void orderLabel_TextChanged(object sender, EventArgs e)
+        {
+            orderLabel.Update();
         }
     }
 }

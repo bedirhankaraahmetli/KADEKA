@@ -35,6 +35,7 @@
             showReportsButton = new Button();
             nameLabel = new Label();
             goBackButton = new Button();
+            orderLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -110,13 +111,23 @@
             // goBackButton
             // 
             goBackButton.BackColor = SystemColors.ActiveCaption;
-            goBackButton.Location = new Point(1288, 149);
+            goBackButton.Location = new Point(1252, 92);
             goBackButton.Name = "goBackButton";
-            goBackButton.Size = new Size(60, 59);
+            goBackButton.Size = new Size(106, 24);
             goBackButton.TabIndex = 0;
             goBackButton.Text = "BACK";
             goBackButton.UseVisualStyleBackColor = false;
             goBackButton.Click += goBackButton_Click;
+            // 
+            // orderLabel
+            // 
+            orderLabel.AutoSize = true;
+            orderLabel.Location = new Point(32, 156);
+            orderLabel.Name = "orderLabel";
+            orderLabel.Size = new Size(38, 15);
+            orderLabel.TabIndex = 6;
+            orderLabel.Text = "label1";
+            orderLabel.TextChanged += orderLabel_TextChanged;
             // 
             // MainMenuForm
             // 
@@ -124,6 +135,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1370, 735);
+            Controls.Add(orderLabel);
             Controls.Add(dateTimeLabel);
             Controls.Add(goBackButton);
             Controls.Add(logOutButton);
@@ -152,5 +164,6 @@
         private Button showReportsButton;
         private Label nameLabel;
         private Button goBackButton;
+        private Label orderLabel;
     }
 }

@@ -8,7 +8,7 @@ namespace Kadeka.Model.Class
 {
     internal class Order : OrderAC<Product>
     {
-        public Order(int ID, int totalPrice, string orderNote) : base(ID, totalPrice, orderNote) { }
+        public Order(int ID, float totalPrice, string orderNote) : base(ID, totalPrice, orderNote) { }
 
     }
 }
