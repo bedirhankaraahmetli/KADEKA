@@ -24,6 +24,7 @@ namespace Kadeka
         Dictionary<int, Table> tables = new Dictionary<int, Table>();
         List<Product> products = MenuInteractions.loadProducts("products.txt");
         Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
+        int currentTable = 0;
 
         public MainMenuForm()
         {
@@ -97,11 +98,11 @@ namespace Kadeka
                         if (table.getOrder() == null)
                             table.setOrder(new Order(orderID, 0, " "));
 
-                        
+                        currentTable = selected_tableID;
                         showProducts(selected_tableID);
                     };
 
-                   
+
                     x += 200;
                 }
                 x = 300;
@@ -146,7 +147,7 @@ namespace Kadeka
                         float price = productsDict[button.Text].getPrice();
                         order.setTotalPrice(order.getTotalPrice() + price);
                         orderLabel.Text += productsDict[button.Text].getName().ToString() + ": " + productsDict[button.Text].getPrice().ToString() + "\n";
-                        totalPriceLabel.Text = order.getTotalPrice().ToString();                      
+                        totalPriceLabel.Text = order.getTotalPrice().ToString();
                     };
 
                     x += 180;
@@ -178,7 +179,7 @@ namespace Kadeka
             {
                 if (tables[2001 + i].getOrder() != null && tables[2001 + i].getOrder().getProductList().Count > 0)
                 {
-                    tables[2001+i].setState(Model.State.occupied);
+                    tables[2001 + i].setState(Model.State.occupied);
                     tableButtons[i].BackColor = Color.OrangeRed;
                 }
             }
@@ -207,6 +208,17 @@ namespace Kadeka
             orderLabel.Update();
         }
 
-    
+        private void reserveButton_Click(object sender, EventArgs e)
+        {
+            if (tables[currentTable].getState() == Model.State.reserved) 
+            {
+                tables[currentTable].setState(Model.State.available);
+                tableButtons[currentTable - 2001].BackColor = Color.LimeGreen;
+            }else
+            {
+                tables[currentTable].setState(Model.State.reserved);
+                tableButtons[currentTable - 2001].BackColor = Color.Orange;
+            }
+        }
     }
 }

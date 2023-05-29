@@ -160,6 +160,7 @@
             reserveButton.TabIndex = 9;
             reserveButton.Text = "Reserve";
             reserveButton.UseVisualStyleBackColor = false;
+            reserveButton.Click += reserveButton_Click;
             // 
             // MainMenuForm
             // 
