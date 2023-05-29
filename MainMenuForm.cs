@@ -109,14 +109,14 @@ namespace Kadeka
                     menuPanel.Controls.Add(button);
                     button.Click += (s, e) =>
                     {
-                        
-                    };       
+
+                    };
                     x += 240;
                 }
                 x = 20;
                 y += 156;
             }
-          
+
 
         }
 
