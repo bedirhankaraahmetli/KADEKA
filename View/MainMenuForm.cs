@@ -286,7 +286,8 @@ namespace Kadeka
         }
         private void ShowReport()
         {
-            if (user.GetType() == typeof(Manager))
+            File.AppendAllText("employeeReport.txt", "");
+            if (user.GetType() == typeof(Manager) )
             {
                 string report = File.ReadAllText("employeeReport.txt");
                 MessageBox.Show(report);
@@ -298,14 +299,19 @@ namespace Kadeka
         }
         private void WriteReport()
         {
-            TimeSpan diff = DateTime.Now.Subtract(user.getShiftStartTime());
-            string report = user.getName() + " " + user.getLastName() + "-> Start Date: " + user.getShiftStartTime() + " - " + DateTime.Now + " Time: " + diff.Hours + ":" + diff.Minutes + ":" + diff.Seconds + "\n";
-            File.AppendAllText("employeeReport.txt", report);
+            if (user.GetType() != typeof(Manager))
+            {
+                String path = "employeeReport.txt";
+                File.AppendAllText(path, " ");
+                TimeSpan diff = DateTime.Now.Subtract(user.getShiftStartTime());
+                string report = user.getName() + " " + user.getLastName() + " -> Start Date: " + user.getShiftStartTime() + " - " + DateTime.Now + " Time: " + diff.Hours + ":" + diff.Minutes + ":" + diff.Seconds + "\n";
+                File.AppendAllText(path, report);
+            }
         }
 
         private void paymentButton_Click(object sender, EventArgs e)
         {
-            string report = tables[currentTable].getOrder().getID() + "-> Time: " + tables[currentTable].getOrder().getOrderDate() +" Total Price: "+ tables[currentTable].getOrder().getTotalPrice()+"\n";
+            string report = tables[currentTable].getOrder().getID() + " -> Time: " + tables[currentTable].getOrder().getOrderDate() +" Total Price: "+ tables[currentTable].getOrder().getTotalPrice()+"\n";
             File.AppendAllText("orderReport.txt", report);
             foreach (Button btn in tables[currentTable].getButtons())
             {
