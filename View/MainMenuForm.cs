@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Kadeka
 {
@@ -24,6 +25,9 @@ namespace Kadeka
         Dictionary<int, Table> tables = new Dictionary<int, Table>();
         List<Product> products = MenuInteractions.loadProducts("products.txt");
         Dictionary<String, Product> productsDict = new Dictionary<String, Product>();
+        LoginForm loginForm;
+        EmployeeAC user;
+
         int currentTable = 0;
 
         public MainMenuForm()
@@ -38,29 +42,14 @@ namespace Kadeka
             goBackButton.Visible = false;
             paymentButton.Visible = false;
             reserveButton.Visible = false;
-            nameLabel.Text = "Bedo BABA";
             orderLabel.Text = "";
             totalPriceLabel.Text = "";
         }
-
-        private void logOutButton_MouseEnter(object sender, EventArgs e)
-        {
-            logOutButton.BackColor = midcolor;
-        }
-
-        private void logOutButton_MouseLeave(object sender, EventArgs e)
-        {
-            logOutButton.BackColor = fgcolor;
-        }
-
-        private void logOutButton_Click(object sender, EventArgs e)
-        {
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
-            this.Visible = false;
-        }
-
         private void MainMenuForm_Load(object sender, EventArgs e)
+        {
+            CreateTableButtons();
+        }   
+        private void CreateTableButtons()
         {
             int x = 300;
             int y = 120;
@@ -108,11 +97,7 @@ namespace Kadeka
                 x = 300;
                 y += 156;
             }
-
-
-
-
-        }
+        } 
         public void showProducts(int selected_tableID)
         {
             PrintOrder(tables[selected_tableID].getOrder());
@@ -167,12 +152,10 @@ namespace Kadeka
         {
             showReportsButton.BackColor = fgcolor;
         }
-
         private void showReportsButton_MouseEnter(object sender, EventArgs e)
         {
             showReportsButton.BackColor = midcolor;
         }
-
         private void goBackButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < tableButtons.Count; i++)
@@ -197,17 +180,13 @@ namespace Kadeka
             reserveButton.Visible = false;
             paymentButton.Visible = false;
         }
-
         private void showReportsButton_Click(object sender, EventArgs e)
         {
-
         }
-
         private void orderLabel_TextChanged(object sender, EventArgs e)
         {
             orderLabel.Update();
         }
-
         private void reserveButton_Click(object sender, EventArgs e)
         {
             if (tables[currentTable].getState() == Model.State.reserved) 
@@ -220,5 +199,47 @@ namespace Kadeka
                 tableButtons[currentTable - 2001].BackColor = Color.Orange;
             }
         }
+        public void SetNameLabel(string name)
+        {
+            nameLabel.Text = name;
+
+        }
+        public void SetLoginForm(LoginForm form)
+        {
+            loginForm = form;
+        }
+        public void SetUser(EmployeeAC User)
+        {
+            user = User;
+        }
+
+        private void logOutButton_MouseEnter(object sender, EventArgs e)
+        {
+            logOutButton.BackColor = midcolor;
+        }
+        private void logOutButton_MouseLeave(object sender, EventArgs e)
+        {
+            logOutButton.BackColor = fgcolor;
+        }
+        private void logOutButton_Click(object sender, EventArgs e)
+        {
+            ShowReport();
+            loginForm.Show();
+            loginForm.SetMenuForm(this);
+            this.Visible = false;
+        }
+        private void ShowReport()
+        {
+            WriteReport();
+            string report = File.ReadAllText("report.txt");
+            MessageBox.Show(report);
+        }
+        private void WriteReport()
+        {
+            TimeSpan diff = DateTime.Now.Subtract(user.getShiftStartTime());
+            string report = user.getName() + " " + user.getLastName() + "-> Start Date: " + user.getShiftStartTime() + " - " + DateTime.Now + " Time: " + diff.Hours + ":" + diff.Minutes + ":" + diff.Seconds + "\n";
+            File.AppendAllText("report.txt", report);
+        }
     }
+
 }

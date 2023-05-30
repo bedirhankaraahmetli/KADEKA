@@ -12,11 +12,6 @@ namespace Kadeka.Model.Class
         {
         }
 
-        public DateTime shiftStartTime { get; set; }
-
-        void shiftStart()
-        {
-            shiftStartTime = DateTime.Now;
-        }
+        
     }
 }

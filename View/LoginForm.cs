@@ -20,10 +20,9 @@ namespace Kadeka
         Color midcolor = Color.FromArgb(148, 103, 73);
         List<Waiter> waiters = EmployeeManagment.retrieveWaiters("waiterInfo.txt");
         List<Manager> managers = EmployeeManagment.retrieveManagers("managerInfo.txt");
-        public String name, lastname;
-
-        public String getName() { return name; }
-        public String getLastname() { return lastname; }
+        MainMenuForm menu = null;
+        public String? name, lastname;
+      
         public LoginForm()
         {
             InitializeComponent();
@@ -51,31 +50,44 @@ namespace Kadeka
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            MainMenuForm menu = new MainMenuForm();
+
+            if(menu == null)
+                menu = new MainMenuForm();
             String username = userNameTextBox.Text;
             String password = passwordTextBox.Text;
 
             bool userFound = false;
+
             for (int q = 0; q < waiters.Count; q++)
             {
-                if (username == waiters[q].getUsername() && password == waiters[q].getPassword() || true)
+                if (username == waiters[q].getUsername() && password == waiters[q].getPassword() && !userFound)
                 {
                     userFound = true;
                     menu.Show();
                     this.Visible = false;
                     name = waiters[q].getName();
                     lastname = waiters[q].getLastName();
+                    waiters[q].shiftStart();
+                    menu.SetNameLabel(name + " "+ lastname);
+                    menu.SetUser(waiters[q]);
+                    break;
                 }
+                
             }
-            for (int q = 0; q < managers.Count; q++)
+            if (!userFound)
             {
-                if (username == managers[q].getUsername() && password == managers[q].getPassword())
+                for (int q = 0; q < managers.Count; q++)
                 {
-                    userFound = true;
-                    menu.Show();
-                    this.Visible = false;
-                    name = waiters[q].getName();
-                    lastname = waiters[q].getLastName();
+                    if (username == managers[q].getUsername() && password == managers[q].getPassword() && !userFound)
+                    {
+                        userFound = true;
+                        menu.Show();
+                        this.Visible = false;
+                        name = managers[q].getName();
+                        lastname = managers[q].getLastName();
+                        menu.SetUser(managers[q]);
+                        break;
+                    }
                 }
             }
 
@@ -83,6 +95,8 @@ namespace Kadeka
             {
                 MessageBox.Show("Invalid username or password! Try Again!");
             }
+            menu.SetLoginForm(this);
+            
         }
 
         public void userNameTextBox_TextChanged(object sender, EventArgs e)
@@ -94,6 +108,11 @@ namespace Kadeka
         private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
             String password = passwordTextBox.Text;
+        }
+        public void SetMenuForm(MainMenuForm form)
+        {
+            if (menu == null)
+                menu = form;
         }
     }
 }
