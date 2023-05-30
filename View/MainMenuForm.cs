@@ -286,9 +286,15 @@ namespace Kadeka
         }
         private void ShowReport()
         {
-            
-            string report = File.ReadAllText("employeeReport.txt");
-            MessageBox.Show(report);
+            if (user.GetType() == typeof(Manager))
+            {
+                string report = File.ReadAllText("employeeReport.txt");
+                MessageBox.Show(report);
+            }
+            else
+            {
+                MessageBox.Show("Unauthorized Interaction");
+            }
         }
         private void WriteReport()
         {
