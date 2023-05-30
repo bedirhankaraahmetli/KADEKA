@@ -31,7 +31,6 @@
             pictureBox1 = new PictureBox();
             dateTimeLabel = new Label();
             logOutButton = new Button();
-            shiftTimeLabel = new Label();
             showReportsButton = new Button();
             nameLabel = new Label();
             goBackButton = new Button();
@@ -74,16 +73,6 @@
             logOutButton.Click += logOutButton_Click;
             logOutButton.MouseEnter += logOutButton_MouseEnter;
             logOutButton.MouseLeave += logOutButton_MouseLeave;
-            // 
-            // shiftTimeLabel
-            // 
-            shiftTimeLabel.AutoSize = true;
-            shiftTimeLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            shiftTimeLabel.Location = new Point(1138, 39);
-            shiftTimeLabel.Name = "shiftTimeLabel";
-            shiftTimeLabel.Size = new Size(106, 30);
-            shiftTimeLabel.TabIndex = 3;
-            shiftTimeLabel.Text = "Shift Time";
             // 
             // showReportsButton
             // 
@@ -164,7 +153,6 @@
             Controls.Add(dateTimeLabel);
             Controls.Add(goBackButton);
             Controls.Add(logOutButton);
-            Controls.Add(shiftTimeLabel);
             Controls.Add(showReportsButton);
             Controls.Add(nameLabel);
             Controls.Add(pictureBox1);
@@ -185,7 +173,6 @@
         private PictureBox pictureBox1;
         private Label dateTimeLabel;
         private Button logOutButton;
-        private Label shiftTimeLabel;
         private Button showReportsButton;
         private Label nameLabel;
         private Button goBackButton;
