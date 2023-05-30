@@ -19,6 +19,14 @@ namespace Kadeka.Model
             state = State.available;
             buttons = new List<Button>();
         }
+
+        public void Clear()
+        {
+            buttons.Clear();
+            order.getProductList().Clear();
+            order.setTotalPrice(0);
+            state = State.available;
+        } 
         public int getId() { return ID; }
         public void setId(int id) { this.ID = id; }
         public State getState() { return state; }

@@ -42,7 +42,6 @@ namespace Kadeka
             goBackButton.Visible = false;
             paymentButton.Visible = false;
             reserveButton.Visible = false;
-            //orderLabel.Text = "";
             totalPriceLabel.Text = "";
         }
         private void MainMenuForm_Load(object sender, EventArgs e)
@@ -74,7 +73,7 @@ namespace Kadeka
                     Controls.Add(button);
                     tableButtons.Add(button);
                     button.Click += (s, e) =>
-                    {
+                    {  
                         paymentButton.Visible = true;
                         reserveButton.Visible = true;
                         goBackButton.Visible = true;
@@ -85,7 +84,7 @@ namespace Kadeka
                         button.Visible = false;
                         selected_tableID = table.getId();
                         if (table.getOrder() == null)
-                            table.setOrder(new Order(orderID, 0, " "));
+                            table.setOrder(new Order(orderID, 0));
 
                         currentTable = selected_tableID;
                         showProducts(selected_tableID);
@@ -127,6 +126,11 @@ namespace Kadeka
 
                     button.Click += (s, e) =>
                     {
+                        if (tables[selected_tableID].getState() == State.available)
+                        {
+                            tables[selected_tableID].getOrder().setOrderDate(DateTime.Now);
+                        }
+                            
                         Order order = tables[selected_tableID].getOrder();
                         List<Product> product = order.getProductList();
                         product.Add(productsDict[button.Text]);
@@ -261,6 +265,8 @@ namespace Kadeka
         public void SetUser(EmployeeAC User)
         {
             user = User;
+            shiftTimeLabel.Text = user.getShiftStartTime().ToShortTimeString();
+
         }
 
         private void logOutButton_MouseEnter(object sender, EventArgs e)
@@ -281,19 +287,27 @@ namespace Kadeka
         private void ShowReport()
         {
             
-            string report = File.ReadAllText("report.txt");
+            string report = File.ReadAllText("employeeReport.txt");
             MessageBox.Show(report);
         }
         private void WriteReport()
         {
             TimeSpan diff = DateTime.Now.Subtract(user.getShiftStartTime());
             string report = user.getName() + " " + user.getLastName() + "-> Start Date: " + user.getShiftStartTime() + " - " + DateTime.Now + " Time: " + diff.Hours + ":" + diff.Minutes + ":" + diff.Seconds + "\n";
-            File.AppendAllText("report.txt", report);
+            File.AppendAllText("employeeReport.txt", report);
         }
 
         private void paymentButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("asd");
+            string report = tables[currentTable].getOrder().getID() + "-> Time: " + tables[currentTable].getOrder().getOrderDate() +" Total Price: "+ tables[currentTable].getOrder().getTotalPrice()+"\n";
+            File.AppendAllText("orderReport.txt", report);
+            foreach (Button btn in tables[currentTable].getButtons())
+            {
+                Controls.Remove(btn);
+            }
+            tables[currentTable].Clear();
+            totalPriceLabel.Text = tables[currentTable].getOrder().getTotalPrice().ToString();
+            tableButtons[currentTable-2001].BackColor = Color.LimeGreen;
         }
 
         

@@ -60,7 +60,7 @@ namespace Kadeka
 
             for (int q = 0; q < waiters.Count; q++)
             {
-                if (username == waiters[q].getUsername() && password == waiters[q].getPassword() && !userFound || true)
+                if (username == waiters[q].getUsername() && password == waiters[q].getPassword() && !userFound)
                 {
                     userFound = true;
                     menu.Show();
@@ -85,6 +85,7 @@ namespace Kadeka
                         this.Visible = false;
                         name = managers[q].getName();
                         lastname = managers[q].getLastName();
+                        menu.SetNameLabel(name + " " + lastname);
                         menu.SetUser(managers[q]);
                         break;
                     }
