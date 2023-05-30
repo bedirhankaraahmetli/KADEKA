@@ -101,6 +101,7 @@ namespace Kadeka
         public void showProducts(int selected_tableID)
         {
             PrintOrder(tables[selected_tableID].getOrder());
+            ShowOrder();
             int x = 300;
             int y = 120;
             int m = -1;
@@ -131,6 +132,7 @@ namespace Kadeka
                         product.Add(productsDict[button.Text]);
                         float price = productsDict[button.Text].getPrice();
                         order.setTotalPrice(order.getTotalPrice() + price);
+                        CreateProductButton(productsDict[button.Text], product,selected_tableID);
                         //orderLabel.Text += productsDict[button.Text].getName().ToString() + ": " + productsDict[button.Text].getPrice().ToString() + "\n";
                         totalPriceLabel.Text = order.getTotalPrice().ToString();
                     };
@@ -140,6 +142,48 @@ namespace Kadeka
                 x = 300;
                 y += 120;
             }
+        }
+        private void ShowOrder()
+        {
+            foreach (Button btn in tables[currentTable].getButtons())
+            {
+                btn.Visible = true;
+            }
+        }
+        private void CreateProductButton(Product product, List<Product> products, int selected_tableID)
+        {
+            int x=20, y=100;
+            int newY = products.Count * 25+ y;
+            Button btn = new Button();
+            btn.Text = String.Format("{0,-25}:{1,5}",product.getName().Trim(),product.getPrice());
+            btn.Location = new Point(x, newY);
+            btn.TextAlign = ContentAlignment.MiddleLeft;
+            btn.BackColor = Color.LightPink;
+            btn.FlatStyle = FlatStyle.Flat;
+            
+            btn.Width = 200;
+            btn.Height = 30;
+            btn.Click += (s, e) =>
+            {
+                products.Remove(product);
+                Controls.Remove(btn);
+                btn.Visible = false;
+                tables[selected_tableID].getOrder().setTotalPrice(tables[selected_tableID].getOrder().getTotalPrice() - product.getPrice());
+                totalPriceLabel.Text = tables[selected_tableID].getOrder().getTotalPrice().ToString();
+                tables[selected_tableID].getButtons().Remove(btn);
+                if (tables[selected_tableID].getButtons().Count > 0) {
+                    int index = 1;
+                    foreach (Button button in tables[selected_tableID].getButtons())
+                    {
+                        int newY =  index * 25 + y;
+                        button.Location = new Point(x, newY);
+                        index++;
+                    }
+                }
+            };
+            tables[selected_tableID].getButtons().Add(btn);
+            Controls.Add(btn);
+
         }
         private void PrintOrder(Order order)
         {
@@ -166,6 +210,10 @@ namespace Kadeka
                     tableButtons[i].BackColor = Color.OrangeRed;
                 }
             }
+            foreach (Button btn in tables[currentTable].getButtons())
+            {
+                btn.Visible = false;
+            }
             foreach (Button b in tableButtons)
             {
                 b.Visible = true;
@@ -182,7 +230,7 @@ namespace Kadeka
         }
         private void showReportsButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("asd");
+            ShowReport();
         }
         private void orderLabel_TextChanged(object sender, EventArgs e)
         {
@@ -225,14 +273,14 @@ namespace Kadeka
         }
         private void logOutButton_Click(object sender, EventArgs e)
         {
-            ShowReport();
+            WriteReport();
             loginForm.Show();
             loginForm.SetMenuForm(this);
             this.Visible = false;
         }
         private void ShowReport()
         {
-            WriteReport();
+            
             string report = File.ReadAllText("report.txt");
             MessageBox.Show(report);
         }
@@ -247,6 +295,8 @@ namespace Kadeka
         {
             MessageBox.Show("asd");
         }
+
+        
     }
 
 }
