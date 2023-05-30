@@ -264,8 +264,10 @@ namespace Kadeka
         }
         public void SetUser(EmployeeAC User)
         {
-            user = User;
-
+            if(User.GetType() == typeof(Manager))
+                user = (Manager) User;
+            else
+                user = (Waiter) User;
         }
 
         private void logOutButton_MouseEnter(object sender, EventArgs e)

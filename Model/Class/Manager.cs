@@ -11,5 +11,10 @@ namespace Kadeka.Model.Class
         public Manager(int ıd, string name, string lastName, string password) : base(ıd, name, lastName, password)
         {
         }
+
+        public override DateTime getShiftStartTime()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

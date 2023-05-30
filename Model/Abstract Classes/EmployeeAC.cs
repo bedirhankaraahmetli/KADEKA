@@ -15,7 +15,7 @@ namespace Kadeka.Model
         string LastName;
         string Username;
         string Password;
-        DateTime shiftStartTime { get; set; }
+        
 
         public EmployeeAC(int ıd, string name, string lastName, string password)
         {
@@ -25,11 +25,7 @@ namespace Kadeka.Model
             Username = (name + lastName).ToLower();
             Password = password;
         }
-
-        public void shiftStart()
-        {
-            this.shiftStartTime = DateTime.Now;
-        }
+        
 
         public int getId() { return Id; }
         public void setId(int id) { this.Id = id; }
@@ -37,7 +33,7 @@ namespace Kadeka.Model
         public String getLastName() { return LastName; }
         public String getUsername() { return Username; }
         public string getPassword() { return Password; }
-        public DateTime getShiftStartTime() { return shiftStartTime; }
+        abstract public DateTime getShiftStartTime();
 
     }
 }
