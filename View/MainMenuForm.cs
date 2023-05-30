@@ -42,13 +42,13 @@ namespace Kadeka
             goBackButton.Visible = false;
             paymentButton.Visible = false;
             reserveButton.Visible = false;
-            orderLabel.Text = "";
+            //orderLabel.Text = "";
             totalPriceLabel.Text = "";
         }
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
             CreateTableButtons();
-        }   
+        }
         private void CreateTableButtons()
         {
             int x = 300;
@@ -97,7 +97,7 @@ namespace Kadeka
                 x = 300;
                 y += 156;
             }
-        } 
+        }
         public void showProducts(int selected_tableID)
         {
             PrintOrder(tables[selected_tableID].getOrder());
@@ -131,7 +131,7 @@ namespace Kadeka
                         product.Add(productsDict[button.Text]);
                         float price = productsDict[button.Text].getPrice();
                         order.setTotalPrice(order.getTotalPrice() + price);
-                        orderLabel.Text += productsDict[button.Text].getName().ToString() + ": " + productsDict[button.Text].getPrice().ToString() + "\n";
+                        //orderLabel.Text += productsDict[button.Text].getName().ToString() + ": " + productsDict[button.Text].getPrice().ToString() + "\n";
                         totalPriceLabel.Text = order.getTotalPrice().ToString();
                     };
 
@@ -144,7 +144,7 @@ namespace Kadeka
         private void PrintOrder(Order order)
         {
             foreach (Product product in order.getProductList())
-                orderLabel.Text += product.getName().ToString() + ": " + product.getPrice().ToString() + "\n";
+                //orderLabel.Text += product.getName().ToString() + ": " + product.getPrice().ToString() + "\n";
 
             totalPriceLabel.Text = order.getTotalPrice().ToString();
         }
@@ -169,7 +169,7 @@ namespace Kadeka
             foreach (Button b in tableButtons)
             {
                 b.Visible = true;
-                orderLabel.Text = "";
+                //orderLabel.Text = "";
                 totalPriceLabel.Text = "";
             }
             foreach (Button b in productButtons)
@@ -182,18 +182,20 @@ namespace Kadeka
         }
         private void showReportsButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("asd");
         }
         private void orderLabel_TextChanged(object sender, EventArgs e)
         {
-            orderLabel.Update();
+            //orderLabel.Update();
         }
         private void reserveButton_Click(object sender, EventArgs e)
         {
-            if (tables[currentTable].getState() == Model.State.reserved) 
+            if (tables[currentTable].getState() == Model.State.reserved)
             {
                 tables[currentTable].setState(Model.State.available);
                 tableButtons[currentTable - 2001].BackColor = Color.LimeGreen;
-            }else
+            }
+            else
             {
                 tables[currentTable].setState(Model.State.reserved);
                 tableButtons[currentTable - 2001].BackColor = Color.Orange;
@@ -239,6 +241,11 @@ namespace Kadeka
             TimeSpan diff = DateTime.Now.Subtract(user.getShiftStartTime());
             string report = user.getName() + " " + user.getLastName() + "-> Start Date: " + user.getShiftStartTime() + " - " + DateTime.Now + " Time: " + diff.Hours + ":" + diff.Minutes + ":" + diff.Seconds + "\n";
             File.AppendAllText("report.txt", report);
+        }
+
+        private void paymentButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("asd");
         }
     }
 

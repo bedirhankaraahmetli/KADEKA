@@ -35,7 +35,6 @@
             showReportsButton = new Button();
             nameLabel = new Label();
             goBackButton = new Button();
-            orderLabel = new Label();
             totalPriceLabel = new Label();
             paymentButton = new Button();
             reserveButton = new Button();
@@ -96,7 +95,7 @@
             showReportsButton.TabIndex = 4;
             showReportsButton.Text = "Show Reports";
             showReportsButton.UseVisualStyleBackColor = true;
-            showReportsButton.Click += showReportsButton_MouseLeave;
+            showReportsButton.Click += showReportsButton_Click;
             showReportsButton.MouseEnter += showReportsButton_MouseEnter;
             showReportsButton.MouseLeave += showReportsButton_MouseLeave;
             // 
@@ -122,16 +121,6 @@
             goBackButton.UseVisualStyleBackColor = false;
             goBackButton.Click += goBackButton_Click;
             // 
-            // orderLabel
-            // 
-            orderLabel.AutoSize = true;
-            orderLabel.Location = new Point(32, 156);
-            orderLabel.Name = "orderLabel";
-            orderLabel.Size = new Size(38, 15);
-            orderLabel.TabIndex = 6;
-            orderLabel.Text = "label1";
-            orderLabel.TextChanged += orderLabel_TextChanged;
-            // 
             // totalPriceLabel
             // 
             totalPriceLabel.AutoSize = true;
@@ -150,6 +139,7 @@
             paymentButton.TabIndex = 8;
             paymentButton.Text = "Pay out";
             paymentButton.UseVisualStyleBackColor = false;
+            paymentButton.Click += paymentButton_Click;
             // 
             // reserveButton
             // 
@@ -171,7 +161,6 @@
             Controls.Add(reserveButton);
             Controls.Add(paymentButton);
             Controls.Add(totalPriceLabel);
-            Controls.Add(orderLabel);
             Controls.Add(dateTimeLabel);
             Controls.Add(goBackButton);
             Controls.Add(logOutButton);
@@ -200,7 +189,6 @@
         private Button showReportsButton;
         private Label nameLabel;
         private Button goBackButton;
-        private Label orderLabel;
         private Label totalPriceLabel;
         private Button paymentButton;
         private Button reserveButton;
